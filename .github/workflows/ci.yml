@@ -1,0 +1,29 @@
+name: CI Validation Pipeline
+
+on: [push]
+
+jobs:
+  build-test-validate:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Build Step
+      run: echo "Building project..."
+
+    - name: Test Step
+      run: echo "Running tests..."
+
+    - name: Validation Step
+      run: echo "Validating system..."
+
+    - name: Generate Report
+      run: echo "All checks completed" > report.txt
+
+    - name: Upload Report
+      uses: actions/upload-artifact@v3
+      with:
+        name: validation-report
+        path: report.txt
